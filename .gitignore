@@ -1,0 +1,30 @@
+backend/.venv/
+backend/__pycache__/
+backend/model/*.h5
+backend/model/*.png
+backend/model/history.json
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+.DS_Store
+Thumbs.db
+*.pyc
+__pycache__/
+
+# Logs
+npm-debug.log*
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Archives
+*.tar.gz
+
+# Large local datasets
+dataset/*.csv
+
+# Ignore secrets
+credentials.json
