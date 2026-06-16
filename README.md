@@ -1,108 +1,24 @@
-# AI Handwritten Digit Recognition System
+# Machine Learning & AI Projects Repository
 
-Modern handwritten digit recognition web app built with a TensorFlow/Keras CNN backend and a React + Tailwind + Framer Motion frontend.
+Welcome to the Machine Learning and AI projects workspace. This repository hosts individual self-contained projects.
 
-## Features
+---
 
-- CNN trained on the Kaggle MNIST CSV train/test files
-- FastAPI REST endpoint for prediction
-- Animated React dashboard with drag-and-drop upload
-- Drawing canvas with live prediction
-- Accuracy and loss charts, confusion matrix, and sample prediction gallery
-- Prediction history, download as PNG/PDF, and sound feedback
-- Built as a local website demo for presentation in VS Code
+## 📂 Projects Directory
 
-## Project Structure
+### 🧠 1. [Digit Recognition AI](file:///c:/Users/durai9999/OneDrive/Pictures/Desktop/Simple%20Chatbot/digit-recognition-ai)
+A full-stack project utilizing a deep learning backend (Python/Flask/TensorFlow) and a interactive frontend canvas (React/Vite/TailwindCSS) to recognize hand-drawn digits in real-time.
+* **Backend**: Deep Learning model trained to recognize handwritten digits.
+* **Frontend**: Responsive drawing canvas with prediction visualizer panels.
 
-```text
-digit-recognition-ai/
-├── backend/
-│   ├── app.py
-│   ├── predict.py
-│   ├── train_model.py
-│   ├── model/
-│   │   └── digit_model.h5
-│   └── requirements.txt
-├── dataset/
-│   ├── mnist_train.csv
-│   ├── mnist_test.csv
-│   └── archives/
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   └── package.json
-└── README.md
-```
+### 📄 2. [Offline RAG AI Document Assistant](file:///c:/Users/durai9999/OneDrive/Pictures/Desktop/Simple%20Chatbot/offline-rag-document-assistant)
+A fully offline RAG (Retrieval-Augmented Generation) document intelligence chat application. It extracts text from uploaded PDFs, chunks it, stores embeddings in a FAISS vector database, and queries a local open-source LLM (such as Llama 3.2 via Ollama) to answer questions based entirely on document context.
+* **Core**: Python, Streamlit, PyMuPDF, SentenceTransformers (`all-MiniLM-L6-v2`), FAISS, Ollama.
+* **Features**: Automated chunk-tuning, confidence scoring, citation source expansion, and glassmorphism design.
 
-## Dataset Setup
+---
 
-The training script expects the Kaggle CSV files in the `dataset/` folder:
+## ⚡ Running the Projects
 
-```text
-dataset/mnist_train.csv
-dataset/mnist_test.csv
-```
-
-The CSVs should contain a `label` column and 784 pixel columns.
-
-## Backend Setup
-
-1. Open a terminal in VS Code and go to `backend`.
-2. Create and activate a virtual environment.
-3. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-4. Train the model from the CSV files:
-
-```bash
-python train_model.py --train-csv ..\dataset\mnist_train.csv --test-csv ..\dataset\mnist_test.csv --epochs 20
-```
-
-5. Start the API:
-
-```bash
-uvicorn app:app --reload --port 8000
-```
-
-API endpoints:
-
-- `GET /health`
-- `GET /metrics`
-- `POST /predict`
-
-## Frontend Setup
-
-1. Open a second terminal in VS Code and go to `frontend`.
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Create a local `.env` file if needed:
-
-```bash
-VITE_API_URL=http://localhost:8000
-```
-
-4. Start the React app:
-
-```bash
-npm run dev
-```
-
-## How To Run in VS Code
-
-1. Open the `digit-recognition-ai` folder in VS Code.
-2. Run the backend training command once to create `backend/model/digit_model.h5`.
-3. Start `uvicorn` in one terminal.
-4. Start `npm run dev` in another terminal.
-5. Open the frontend URL shown by Vite and upload a digit image or draw one on the canvas.
-
-## Notes
-
-- The current code expects the Kaggle MNIST CSV files in `dataset/`.
-- The frontend already includes download, history, and live canvas prediction features.
+Each project has its own folder containing a dedicated configuration, requirements list, and guides.
+* For the Document Assistant, you can use the launcher script [run.bat](file:///c:/Users/durai9999/OneDrive/Pictures/Desktop/Simple%20Chatbot/run.bat) at the workspace root.

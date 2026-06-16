@@ -1,30 +1,27 @@
-backend/.venv/
-backend/__pycache__/
-backend/model/*.h5
-backend/model/*.png
-backend/model/history.json
-frontend/node_modules/
-frontend/dist/
-frontend/.env
-frontend/.env.*
+# Digit Recognition AI ignores
+digit-recognition-ai/backend/.venv/
+digit-recognition-ai/backend/__pycache__/
+digit-recognition-ai/backend/model/*.h5
+digit-recognition-ai/backend/model/*.png
+digit-recognition-ai/backend/model/history.json
+digit-recognition-ai/frontend/node_modules/
+digit-recognition-ai/frontend/dist/
+digit-recognition-ai/frontend/.env
+digit-recognition-ai/frontend/.env.*
+digit-recognition-ai/dataset/*.csv
+
+# Offline RAG Document Assistant ignores
+offline-rag-document-assistant/.venv/
+offline-rag-document-assistant/__pycache__/
+offline-rag-document-assistant/test_vector_store/
+
+# General ignores
 .DS_Store
 Thumbs.db
 *.pyc
 __pycache__/
-
-# Logs
-npm-debug.log*
 *.log
-
-# IDEs
 .vscode/
 .idea/
-
-# Archives
 *.tar.gz
-
-# Large local datasets
-dataset/*.csv
-
-# Ignore secrets
 credentials.json
