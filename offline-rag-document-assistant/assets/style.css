@@ -1,0 +1,189 @@
+/* Custom Premium CSS for Offline RAG Document Assistant */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Global Style Overrides */
+html, body, [data-testid="stAppViewContainer"] {
+    background-color: #0b0c10;
+    color: #e2e8f0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar Customization */
+[data-testid="stSidebar"] {
+    background-color: #11131c !important;
+    border-right: 1px solid #1e2230;
+}
+
+[data-testid="stSidebar"] .stMarkdown h1, 
+[data-testid="stSidebar"] .stMarkdown h2, 
+[data-testid="stSidebar"] .stMarkdown h3 {
+    color: #a5b4fc !important;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+}
+
+/* Headers and Titles */
+h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem !important;
+}
+
+h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #cbd5e1 !important;
+}
+
+/* Custom Card Container */
+.premium-card {
+    background: rgba(22, 25, 37, 0.7);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.premium-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Metric Badges Grid */
+.metrics-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.metric-badge {
+    background: linear-gradient(145deg, #131520, #1b1f2e);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #6366f1;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.metric-badge.success-border {
+    border-left-color: #10b981;
+}
+
+.metric-badge.warning-border {
+    border-left-color: #f59e0b;
+}
+
+.metric-badge.info-border {
+    border-left-color: #3b82f6;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Streamlit Button Styling */
+div.stButton > button {
+    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.6rem 1.5rem !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease-in-out !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+}
+
+div.stButton > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45) !important;
+    background: linear-gradient(135deg, #5a52ff 0%, #4c94ff 100%) !important;
+}
+
+div.stButton > button:active {
+    transform: translateY(1px) !important;
+}
+
+/* Secondary Actions / Process Button Styling */
+div.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+div.stButton > button[kind="primary"]:hover {
+    background: linear-gradient(135deg, #12d393 0%, #06b07b 100%) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45) !important;
+}
+
+/* Input Fields styling */
+.stTextInput input {
+    background-color: #141722 !important;
+    border: 1px solid #282f44 !important;
+    color: #f8fafc !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.stTextInput input:focus {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Table Style Overrides */
+[data-testid="stTable"] {
+    background-color: #121520 !important;
+    border: 1px solid #1e2436 !important;
+    border-radius: 8px;
+}
+
+/* Custom source chunk block */
+.source-chunk-card {
+    background-color: #131722;
+    border: 1px solid #1f2538;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.source-chunk-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #6366f1;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #1e2436;
+    padding-bottom: 0.25rem;
+}
+
+.source-chunk-text {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+/* Expander custom appearance */
+.stElementContainer [data-testid="stExpander"] {
+    background-color: #121624 !important;
+    border: 1px solid #1f273d !important;
+    border-radius: 8px !important;
+}
