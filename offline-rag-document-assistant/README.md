@@ -32,46 +32,31 @@ flowchart TD
     classDef fallback fill:#F1F5F9,stroke:#64748B,stroke-width:2px,color:#0F172A;
     classDef output fill:#F0FDF4,stroke:#059669,stroke-width:2px,color:#064E3B;
 
-    Start(["👤 User Uploads PDF(s)"]) --> UI["Streamlit Web Interface<br/><i>(Clean Professional Light Theme)</i>"]:::client
-    UI --> TriggerIndex{"User clicks<br/>'Process PDFs'"}:::client
-
-    subgraph Ingestion ["📥 Ingestion & Document Processing Pipeline (src/pdf_reader.py & src/text_splitter.py)"]
-        TriggerIndex --> ExtractText["PyMuPDF (fitz) Extractor<br/><i>Page-by-page text & layout extraction</i>"]:::process
-        ExtractText --> AutoTuner["Auto-Tuner Analysis (src/auto_tuner.py)<br/><i>Volume & word count adaptive settings</i>"]:::process
-        AutoTuner --> TextChunker["Sliding Window Text Splitter<br/><i>Word-level chunking with overlap & metadata</i>"]:::process
+    subgraph Phase1 ["1. Document Ingestion and Indexing Pipeline"]
+        A["PDF Upload (app.py)"]:::client --> B["PyMuPDF Page Parser (src/pdf_reader.py)"]:::process
+        B --> C["Metadata-Aware Chunker (src/text_splitter.py)"]:::process
+        C --> D["BGE-Small Embedder (src/embeddings.py)"]:::vector
+        D --> E["FAISS IndexFlatIP Store (src/vector_db.py)"]:::vector
     end
 
-    subgraph VectorEngine ["🧠 Vector Store & Embedding Pipeline (src/embeddings.py & src/vector_db.py)"]
-        TextChunker --> BGEEmbed["BAAI/bge-small-en-v1.5 Embedder<br/><i>Generate 384-dim dense float32 vectors</i>"]:::vector
-        BGEEmbed --> FAISSBuild["Build FAISS Vector Index<br/><i>IndexFlatIP (Exact Cosine Similarity)</i>"]:::vector
-        FAISSBuild --> DiskStore["Persist Vector Store to Disk<br/>• <code>document_index.faiss</code> (Vectors)<br/>• <code>document_chunks.json</code> (Metadata)"]:::vector
+    subgraph Phase2 ["2. Query Understanding and Hybrid Retrieval"]
+        F["User Question Input (app.py)"]:::client --> G["Query Intent Classifier (src/query_classifier.py)"]:::decision
+        G --> H["BGE Asymmetric Query Embedder"]:::model
+        H --> I["FAISS Cosine Similarity Search"]:::vector
+        E -.-> I
+        I --> J["Hybrid Lexical Reranker (src/rag_pipeline.py)"]:::process
     end
 
-    UserQuery(["❓ User Enters Question"]) --> QueryUI["Question Input Area (app.py)"]:::client
-    QueryUI --> Classify["Query Classifier (src/query_classifier.py)<br/><i>Detect Skills, Fact, Summary, Definition</i>"]:::decision
-
-    subgraph Retrieval ["🔍 Query Processing & Hybrid Retrieval (src/rag_pipeline.py)"]
-        Classify --> AsymEmbed["Asymmetric Query Embedding<br/><i>Prefix: 'Represent this sentence...'</i>"]:::model
-        AsymEmbed --> FAISSSearch["FAISS Top-K Candidate Search<br/><i>Retrieve initial candidate pool (K=5)</i>"]:::vector
-        FAISSSearch --> LexicalRerank["Lexical Keyword Reranker<br/><i>Domain synonym boost (skills, work, tools)</i>"]:::process
-        LexicalRerank --> ScoreBlend["Score Blending (70% Semantic + 30% Lexical)"]:::process
+    subgraph Phase3 ["3. Inference and Guardrail Engine"]
+        J --> K{"Similarity Score Threshold Check"}:::decision
+        K -- "Score >= Threshold" --> L["Ollama llama3.2 Inference (src/ollama_llm.py)"]:::model
+        K -- "Score < Threshold" --> M["Guardrail Fallback Response"]:::fallback
     end
 
-    ScoreBlend --> GuardCheck{"Top Score &ge; Min Threshold?<br/><i>(Default: &ge; 0.20)</i>"}:::decision
-
-    subgraph Inference ["🤖 Local LLM Inference & Synthesis (src/ollama_llm.py)"]
-        GuardCheck -- "Yes (Sufficient Context)" --> PromptFmt["Format Structured Context Prompt<br/><i>System rules + retrieved chunk text</i>"]:::model
-        PromptFmt --> OllamaRun["Ollama Local LLM API<br/><code>llama3.2</code> (HTTP POST :11434)"]:::model
-        OllamaRun --> GenAnswer["Synthesize Grounded Answer"]:::output
-    end
-
-    GuardCheck -- "No (Irrelevant / Weak)" --> FallbackMsg["Guardrail Fallback Response<br/><i>'I could not find this information...'</i>"]:::fallback
-
-    subgraph Presentation ["📊 Evaluation & Presentation Layer (app.py & assets/style.css)"]
-        GenAnswer --> RenderCards["Render High-Contrast AI Answer Card"]:::output
-        FallbackMsg --> RenderCards
-        RenderCards --> MetricCalc["Compute Evaluation Metrics<br/>• Similarity Scores & Average<br/>• End-to-End Latency<br/>• Confidence Level"]:::output
-        MetricCalc --> SourceTable["Display Retrieved Chunks & Page References"]:::output
+    subgraph Phase4 ["4. Dashboard and Evaluation Layer"]
+        L --> N["AI Answer Card (app.py)"]:::output
+        M --> N
+        N --> O["Evaluation Metrics and Source Citations"]:::output
     end
 ```
 
@@ -125,9 +110,9 @@ When an answer is generated, the assistant presents six real-time evaluation met
 4. **Average Similarity Score**: Mean cosine similarity across the retrieved Top-K chunks.
 5. **Response Time**: Total round-trip latency (vector embedding + FAISS search + Ollama LLM generation).
 6. **Confidence Level**:
-   - 🟢 **High Confidence**: Top score &ge; `0.50`
-   - 🟡 **Medium Confidence**: Top score &ge; `0.35`
-   - 🟠 **Low Confidence**: Top score &ge; `0.20`
+   - 🟢 **High Confidence**: Top score >= `0.50`
+   - 🟡 **Medium Confidence**: Top score >= `0.35`
+   - 🟠 **Low Confidence**: Top score >= `0.20`
    - 🔴 **Answer Not Found**: Top score < `0.20` or guardrail triggered
 
 ---
