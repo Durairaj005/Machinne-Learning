@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Large Model Files (GGUF weights are ~2GB and should not be committed to Git)
+models/
+*.gguf
+*.bin
+*.safetensors
+
+# HuggingFace & Cache
+.cache/
+hf_cache/
+
+# Streamlit
+.streamlit/
+
+# OS Specific
+.DS_Store
+Thumbs.db

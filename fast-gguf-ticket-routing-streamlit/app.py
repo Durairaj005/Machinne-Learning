@@ -3,9 +3,8 @@ import streamlit as st
 from llama_cpp import Llama
 
 REPO_ID = "msdrajan/llama-3.2-3b-routing-gguf"
-
-# Replace with exact .gguf file name if "*.gguf" is slow or gives error
-MODEL_FILE = "*.gguf"
+MODEL_FILE = "Llama-3.2-3B-Instruct.Q4_K_M.gguf"
+LOCAL_MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", MODEL_FILE)
 
 LABELS = ["SALES_TEAM", "SUPPORT_TEAM", "TECH_TEAM"]
 
@@ -20,49 +19,54 @@ st.write("This version loads the GGUF model only when needed and caches it after
 
 @st.cache_resource(show_spinner=False)
 def load_model():
-    return Llama.from_pretrained(
-        repo_id=REPO_ID,
-        filename=MODEL_FILE,
+    if os.path.exists(LOCAL_MODEL_PATH):
+        model_path = LOCAL_MODEL_PATH
+    else:
+        from huggingface_hub import hf_hub_download
+        model_path = hf_hub_download(repo_id=REPO_ID, filename=MODEL_FILE)
+
+    return Llama(
+        model_path=model_path,
         n_ctx=512,                         # smaller context = faster load/inference
         n_threads=max(2, os.cpu_count() or 4),
         n_batch=128,
         verbose=False
     )
 
-def classify_ticket(ticket):
-    prompt = f"""Classify this customer ticket into only one label.
-
-Labels:
-SALES_TEAM
-SUPPORT_TEAM
-TECH_TEAM
-
-Ticket: {ticket}
-
-Answer only the label:"""
-
-    llm = load_model()
-
-    response = llm(
-        prompt,
-        max_tokens=8,
-        temperature=0,
-        stop=["\n"]
-    )
-
-    output = response["choices"][0]["text"].strip().upper()
-
-    for label in LABELS:
-        if label in output:
-            return label, output
-
-    # fallback if model gives unclear answer
+def rule_based_fallback(ticket):
     text = ticket.lower()
     if any(w in text for w in ["price", "pricing", "plan", "demo", "quote", "quotation", "discount", "buy", "purchase"]):
-        return "SALES_TEAM", output
+        return "SALES_TEAM"
     if any(w in text for w in ["payment", "refund", "billing", "invoice", "login", "password", "account", "subscription"]):
-        return "SUPPORT_TEAM", output
-    return "TECH_TEAM", output
+        return "SUPPORT_TEAM"
+    return "TECH_TEAM"
+
+def classify_ticket(ticket):
+    try:
+        llm = load_model()
+        prompt = (
+            f"<|start_header_id|>system<|end_header_id|>\n\n"
+            f"You are a ticket classification assistant. Classify the customer ticket into exactly one category: "
+            f"SALES_TEAM, SUPPORT_TEAM, or TECH_TEAM. Respond with ONLY the label.<|eot_id|>"
+            f"<|start_header_id|>user<|end_header_id|>\n\n"
+            f"Ticket: {ticket}<|eot_id|>"
+            f"<|start_header_id|>assistant<|end_header_id|>\n\n"
+        )
+        response = llm(
+            prompt,
+            max_tokens=8,
+            temperature=0,
+            stop=["<|eot_id|>", "\n"]
+        )
+        output = response["choices"][0]["text"].strip().upper()
+        for label in LABELS:
+            if label in output:
+                return label, output
+        fallback_label = rule_based_fallback(ticket)
+        return fallback_label, f"{output} (fallback applied: {fallback_label})"
+    except Exception as e:
+        fallback_label = rule_based_fallback(ticket)
+        return fallback_label, f"Model unavailable ({e}). Fallback applied: {fallback_label}"
 
 samples = [
     "I want to know the pricing for enterprise plan",
@@ -82,13 +86,13 @@ ticket = st.text_area(
     placeholder="Example: I am getting a 500 error from the backend"
 )
 
-st.caption("Note: First prediction may take time because the model loads. After that, it is cached and faster.")
+st.caption("Note: First prediction may take a few seconds as the model loads into memory. Subsequent predictions are cached and fast.")
 
 if st.button("Route Ticket"):
     if not ticket.strip():
         st.warning("Please enter a ticket.")
     else:
-        with st.spinner("Loading model and routing ticket... First time may take some time."):
+        with st.spinner("Routing ticket..."):
             label, raw = classify_ticket(ticket)
 
         st.success(f"Assigned Team: {label}")

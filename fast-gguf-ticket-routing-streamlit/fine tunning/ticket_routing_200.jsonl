@@ -1,0 +1,200 @@
+{"input": "The app performance is very slow", "output": "TECH_TEAM"}
+{"input": "My billing address is wrong on the invoice", "output": "SUPPORT_TEAM"}
+{"input": "I paid for premium but still see basic plan", "output": "SUPPORT_TEAM"}
+{"input": "How to enable debug logs", "output": "TECH_TEAM"}
+{"input": "Can you explain your enterprise package", "output": "SALES_TEAM"}
+{"input": "I want to dispute a billing charge", "output": "SUPPORT_TEAM"}
+{"input": "The SDK installation fails on my system", "output": "TECH_TEAM"}
+{"input": "The app performance is very slow", "output": "TECH_TEAM"}
+{"input": "I am getting a 500 error from the backend", "output": "TECH_TEAM"}
+{"input": "My payment went through but the subscription is not active", "output": "SUPPORT_TEAM"}
+{"input": "The receipt download is not working", "output": "SUPPORT_TEAM"}
+{"input": "I cannot update my phone number in the account", "output": "SUPPORT_TEAM"}
+{"input": "Can you share details about reseller program discounts", "output": "SALES_TEAM"}
+{"input": "How do I cancel my subscription", "output": "SUPPORT_TEAM"}
+{"input": "The application crashes when I upload a file", "output": "TECH_TEAM"}
+{"input": "Server is returning invalid responses", "output": "TECH_TEAM"}
+{"input": "I need help updating my profile information", "output": "SUPPORT_TEAM"}
+{"input": "The system is not saving my changes", "output": "TECH_TEAM"}
+{"input": "Does your company provide startup pricing", "output": "SALES_TEAM"}
+{"input": "How to enable debug logs", "output": "TECH_TEAM"}
+{"input": "The invoice amount looks incorrect", "output": "SUPPORT_TEAM"}
+{"input": "My subscription expired earlier than expected", "output": "SUPPORT_TEAM"}
+{"input": "I am getting an authentication error", "output": "TECH_TEAM"}
+{"input": "The website freezes when I open analytics", "output": "TECH_TEAM"}
+{"input": "The integration endpoint is not responding", "output": "TECH_TEAM"}
+{"input": "I need help with my login issue", "output": "SUPPORT_TEAM"}
+{"input": "I paid for premium but still see basic plan", "output": "SUPPORT_TEAM"}
+{"input": "Database connection timeout error", "output": "TECH_TEAM"}
+{"input": "I need help with my login issue", "output": "SUPPORT_TEAM"}
+{"input": "My account got locked suddenly", "output": "SUPPORT_TEAM"}
+{"input": "I cannot connect to the staging database", "output": "TECH_TEAM"}
+{"input": "I am getting a 500 error from the backend", "output": "TECH_TEAM"}
+{"input": "We are comparing your pro and business plans", "output": "SALES_TEAM"}
+{"input": "The payment page is stuck during checkout", "output": "SUPPORT_TEAM"}
+{"input": "Does your company provide startup pricing", "output": "SALES_TEAM"}
+{"input": "Is there a free trial available for the premium version", "output": "SALES_TEAM"}
+{"input": "I need help updating my profile information", "output": "SUPPORT_TEAM"}
+{"input": "I paid for premium but still see basic plan", "output": "SUPPORT_TEAM"}
+{"input": "Search results are inaccurate", "output": "TECH_TEAM"}
+{"input": "I am unable to update my billing details", "output": "SUPPORT_TEAM"}
+{"input": "Can you share details about custom pricing discounts", "output": "SALES_TEAM"}
+{"input": "My payment went through but the subscription is not active", "output": "SUPPORT_TEAM"}
+{"input": "Can I get a quotation for 500 users", "output": "SALES_TEAM"}
+{"input": "The report export gives corrupted CSV file", "output": "TECH_TEAM"}
+{"input": "The receipt download is not working", "output": "SUPPORT_TEAM"}
+{"input": "Help me choose the right plan for my team", "output": "SALES_TEAM"}
+{"input": "File uploads fail intermittently", "output": "TECH_TEAM"}
+{"input": "My account got locked suddenly", "output": "SUPPORT_TEAM"}
+{"input": "My billing address is wrong on the invoice", "output": "SUPPORT_TEAM"}
+{"input": "Can I get a quotation for 200 users", "output": "SALES_TEAM"}
+{"input": "I was charged twice for the same plan", "output": "SUPPORT_TEAM"}
+{"input": "Notifications are delayed", "output": "TECH_TEAM"}
+{"input": "I want to upgrade to the business plan", "output": "SALES_TEAM"}
+{"input": "We are comparing your pro and business plans", "output": "SALES_TEAM"}
+{"input": "The dashboard does not load on mobile", "output": "TECH_TEAM"}
+{"input": "Do you have partner pricing options", "output": "SALES_TEAM"}
+{"input": "The API gives unauthorized error even with token", "output": "TECH_TEAM"}
+{"input": "How do I integrate your API", "output": "TECH_TEAM"}
+{"input": "Please send pricing details for enterprise users", "output": "SALES_TEAM"}
+{"input": "I want to know the pricing for your enterprise plan", "output": "SALES_TEAM"}
+{"input": "I see a blank screen after login", "output": "TECH_TEAM"}
+{"input": "The API gives unauthorized error even with token", "output": "TECH_TEAM"}
+{"input": "Is there a discount for bulk users", "output": "SALES_TEAM"}
+{"input": "The system is not saving my changes", "output": "TECH_TEAM"}
+{"input": "I want to speak with sales regarding custom pricing", "output": "SALES_TEAM"}
+{"input": "I am facing CORS issues", "output": "TECH_TEAM"}
+{"input": "How much does the yearly plan cost", "output": "SALES_TEAM"}
+{"input": "I want to upgrade to the enterprise plan", "output": "SALES_TEAM"}
+{"input": "Can you share details about custom pricing discounts", "output": "SALES_TEAM"}
+{"input": "I am interested in a product demo for enterprise teams", "output": "SALES_TEAM"}
+{"input": "Notifications are delayed", "output": "TECH_TEAM"}
+{"input": "I want to speak with sales regarding product demo", "output": "SALES_TEAM"}
+{"input": "The website freezes when I open analytics", "output": "TECH_TEAM"}
+{"input": "I want to dispute a billing charge", "output": "SUPPORT_TEAM"}
+{"input": "The app logged me out automatically", "output": "SUPPORT_TEAM"}
+{"input": "How much does the monthly plan cost", "output": "SALES_TEAM"}
+{"input": "The webhook payload is missing required fields", "output": "TECH_TEAM"}
+{"input": "The login API returns invalid JSON", "output": "TECH_TEAM"}
+{"input": "Are there any ongoing promotions for new customers", "output": "SALES_TEAM"}
+{"input": "How do I cancel my subscription", "output": "SUPPORT_TEAM"}
+{"input": "Why is my account suspended", "output": "SUPPORT_TEAM"}
+{"input": "I need help updating my profile information", "output": "SUPPORT_TEAM"}
+{"input": "Is there a discount for bulk users", "output": "SALES_TEAM"}
+{"input": "The SDK installation fails on my system", "output": "TECH_TEAM"}
+{"input": "I want to upgrade to the pro plan", "output": "SALES_TEAM"}
+{"input": "I want to buy your product for my company", "output": "SALES_TEAM"}
+{"input": "Can someone from sales contact me about partnership", "output": "SALES_TEAM"}
+{"input": "I want to purchase multiple licenses", "output": "SALES_TEAM"}
+{"input": "The app performance is very slow", "output": "TECH_TEAM"}
+{"input": "The integration endpoint is not responding", "output": "TECH_TEAM"}
+{"input": "How much does the annual plan cost", "output": "SALES_TEAM"}
+{"input": "My refund is still not processed", "output": "SUPPORT_TEAM"}
+{"input": "The export feature is not working", "output": "TECH_TEAM"}
+{"input": "The report export gives corrupted CSV file", "output": "TECH_TEAM"}
+{"input": "My billing address is wrong on the invoice", "output": "SUPPORT_TEAM"}
+{"input": "I want to buy your product for my company", "output": "SALES_TEAM"}
+{"input": "The app logged me out automatically", "output": "SUPPORT_TEAM"}
+{"input": "I need a commercial proposal for your software", "output": "SALES_TEAM"}
+{"input": "Do you have annual subscription offers", "output": "SALES_TEAM"}
+{"input": "I want to know the pricing for your startup plan", "output": "SALES_TEAM"}
+{"input": "The receipt download is not working", "output": "SUPPORT_TEAM"}
+{"input": "Is there a discount for nonprofits", "output": "SALES_TEAM"}
+{"input": "I am getting an authentication error", "output": "TECH_TEAM"}
+{"input": "The mobile layout is broken after update", "output": "TECH_TEAM"}
+{"input": "Can you provide a quote for annual billing", "output": "SALES_TEAM"}
+{"input": "Notifications are delayed", "output": "TECH_TEAM"}
+{"input": "Server is returning invalid responses", "output": "TECH_TEAM"}
+{"input": "What is included in the premium package", "output": "SALES_TEAM"}
+{"input": "Can you explain your enterprise package", "output": "SALES_TEAM"}
+{"input": "The payment page is stuck during checkout", "output": "SUPPORT_TEAM"}
+{"input": "I need a commercial proposal for your software", "output": "SALES_TEAM"}
+{"input": "My account got locked suddenly", "output": "SUPPORT_TEAM"}
+{"input": "I need a commercial proposal for your software", "output": "SALES_TEAM"}
+{"input": "Server is returning invalid responses", "output": "TECH_TEAM"}
+{"input": "Please help me recover my account", "output": "SUPPORT_TEAM"}
+{"input": "I paid for premium but still see basic plan", "output": "SUPPORT_TEAM"}
+{"input": "The invoice amount looks incorrect", "output": "SUPPORT_TEAM"}
+{"input": "The file processing job is stuck", "output": "TECH_TEAM"}
+{"input": "I want to dispute a billing charge", "output": "SUPPORT_TEAM"}
+{"input": "I want to upgrade to the startup plan", "output": "SALES_TEAM"}
+{"input": "The SDK installation fails on my system", "output": "TECH_TEAM"}
+{"input": "I need a commercial proposal for your software", "output": "SALES_TEAM"}
+{"input": "I want to speak with sales regarding product demo", "output": "SALES_TEAM"}
+{"input": "Can I schedule a demo with your sales team", "output": "SALES_TEAM"}
+{"input": "Can you explain your enterprise package", "output": "SALES_TEAM"}
+{"input": "I want to dispute a billing charge", "output": "SUPPORT_TEAM"}
+{"input": "The system is not saving my changes", "output": "TECH_TEAM"}
+{"input": "Can you provide a quote for annual billing", "output": "SALES_TEAM"}
+{"input": "I forgot my password and cannot log in", "output": "SUPPORT_TEAM"}
+{"input": "I want to know the pricing for your startup plan", "output": "SALES_TEAM"}
+{"input": "I am unable to reset my password", "output": "SUPPORT_TEAM"}
+{"input": "I want to speak with sales regarding annual billing", "output": "SALES_TEAM"}
+{"input": "Notifications are delayed", "output": "TECH_TEAM"}
+{"input": "The export feature is not working", "output": "TECH_TEAM"}
+{"input": "Can someone from sales contact me about partnership", "output": "SALES_TEAM"}
+{"input": "The invoice amount looks incorrect", "output": "SUPPORT_TEAM"}
+{"input": "The mobile layout is broken after update", "output": "TECH_TEAM"}
+{"input": "The website freezes when I open analytics", "output": "TECH_TEAM"}
+{"input": "How can I change my registered email", "output": "SUPPORT_TEAM"}
+{"input": "What is included in the enterprise package", "output": "SALES_TEAM"}
+{"input": "API responses are very slow", "output": "TECH_TEAM"}
+{"input": "Can you share details about custom pricing discounts", "output": "SALES_TEAM"}
+{"input": "The login API returns invalid JSON", "output": "TECH_TEAM"}
+{"input": "Search results are inaccurate", "output": "TECH_TEAM"}
+{"input": "I cannot update my phone number in the account", "output": "SUPPORT_TEAM"}
+{"input": "Do you support custom pricing for college teams", "output": "SALES_TEAM"}
+{"input": "What is the best plan for a small business", "output": "SALES_TEAM"}
+{"input": "Is there a free trial available for your product", "output": "SALES_TEAM"}
+{"input": "I want to know the pricing for your enterprise plan", "output": "SALES_TEAM"}
+{"input": "Search results are inaccurate", "output": "TECH_TEAM"}
+{"input": "I cannot access my account anymore", "output": "SUPPORT_TEAM"}
+{"input": "I need help updating my profile information", "output": "SUPPORT_TEAM"}
+{"input": "I am facing CORS issues", "output": "TECH_TEAM"}
+{"input": "I forgot my password and cannot log in", "output": "SUPPORT_TEAM"}
+{"input": "The report export gives corrupted CSV file", "output": "TECH_TEAM"}
+{"input": "I need help changing my password", "output": "SUPPORT_TEAM"}
+{"input": "I was charged twice for the same plan", "output": "SUPPORT_TEAM"}
+{"input": "I cannot connect to the staging database", "output": "TECH_TEAM"}
+{"input": "The dashboard does not load on mobile", "output": "TECH_TEAM"}
+{"input": "The page keeps refreshing automatically", "output": "TECH_TEAM"}
+{"input": "I am unable to reset my password", "output": "SUPPORT_TEAM"}
+{"input": "The app performance is very slow", "output": "TECH_TEAM"}
+{"input": "My account shows inactive even after payment", "output": "SUPPORT_TEAM"}
+{"input": "I want to upgrade to the enterprise plan", "output": "SALES_TEAM"}
+{"input": "I paid for premium but still see basic plan", "output": "SUPPORT_TEAM"}
+{"input": "Can you explain your pricing model", "output": "SALES_TEAM"}
+{"input": "I need help changing my password", "output": "SUPPORT_TEAM"}
+{"input": "I need a commercial proposal for your software", "output": "SALES_TEAM"}
+{"input": "What plans do you offer for startups", "output": "SALES_TEAM"}
+{"input": "I am unable to update my billing details", "output": "SUPPORT_TEAM"}
+{"input": "File uploads fail intermittently", "output": "TECH_TEAM"}
+{"input": "The website freezes when I open analytics", "output": "TECH_TEAM"}
+{"input": "Please help me recover my account", "output": "SUPPORT_TEAM"}
+{"input": "The file processing job is stuck", "output": "TECH_TEAM"}
+{"input": "The app performance is very slow", "output": "TECH_TEAM"}
+{"input": "My billing address is wrong on the invoice", "output": "SUPPORT_TEAM"}
+{"input": "My account shows inactive even after payment", "output": "SUPPORT_TEAM"}
+{"input": "Can I schedule a demo with your sales team", "output": "SALES_TEAM"}
+{"input": "Do you have partner pricing options", "output": "SALES_TEAM"}
+{"input": "I want to buy your product for my company", "output": "SALES_TEAM"}
+{"input": "How do I cancel my subscription", "output": "SUPPORT_TEAM"}
+{"input": "Is there a discount for nonprofits", "output": "SALES_TEAM"}
+{"input": "The report export gives corrupted CSV file", "output": "TECH_TEAM"}
+{"input": "My refund is still not processed", "output": "SUPPORT_TEAM"}
+{"input": "I cannot connect to the staging database", "output": "TECH_TEAM"}
+{"input": "The page keeps refreshing automatically", "output": "TECH_TEAM"}
+{"input": "I want to dispute a billing charge", "output": "SUPPORT_TEAM"}
+{"input": "How do I cancel my subscription", "output": "SUPPORT_TEAM"}
+{"input": "Can you share details about product demo discounts", "output": "SALES_TEAM"}
+{"input": "My payment went through but the subscription is not active", "output": "SUPPORT_TEAM"}
+{"input": "Tell me the cost difference between pro and basic", "output": "SALES_TEAM"}
+{"input": "How can I change my registered email", "output": "SUPPORT_TEAM"}
+{"input": "I want to buy your product for my company", "output": "SALES_TEAM"}
+{"input": "I cannot update my phone number in the account", "output": "SUPPORT_TEAM"}
+{"input": "I was charged twice for the same plan", "output": "SUPPORT_TEAM"}
+{"input": "Do you have quarterly subscription offers", "output": "SALES_TEAM"}
+{"input": "My payment went through but the subscription is not active", "output": "SUPPORT_TEAM"}
+{"input": "My account got locked suddenly", "output": "SUPPORT_TEAM"}
+{"input": "The webhook payload is missing required fields", "output": "TECH_TEAM"}
+{"input": "The login API returns invalid JSON", "output": "TECH_TEAM"}
