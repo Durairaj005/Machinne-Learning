@@ -70,12 +70,18 @@ def init_session_state() -> None:
             st.session_state[key] = value
 
 
-def render_sidebar() -> tuple[str, bool, int, float, int, int]:
+def render_sidebar() -> tuple[str, str, bool, int, float, int, int]:
     st.sidebar.title("Settings")
     ollama_model = st.sidebar.text_input(
         "Ollama model name",
         value="llama3.2",
         help="Examples: llama3.2, mistral, phi3",
+    )
+    embedding_model = st.sidebar.selectbox(
+        "Embedding model",
+        options=["BAAI/bge-small-en-v1.5", "all-MiniLM-L6-v2"],
+        index=0,
+        help="BAAI/bge-small-en-v1.5 provides state-of-the-art semantic retrieval precision.",
     )
     auto_optimize = st.sidebar.checkbox(
         "Auto-optimize settings based on input",
@@ -92,18 +98,18 @@ def render_sidebar() -> tuple[str, bool, int, float, int, int]:
     )
     min_similarity = st.sidebar.slider(
         "Minimum similarity for answer",
-        min_value=0.20,
-        max_value=0.80,
-        value=0.45,
+        min_value=0.10,
+        max_value=0.70,
+        value=0.25,
         step=0.01,
         disabled=auto_optimize,
     )
     chunk_size = st.sidebar.slider(
         "Chunk size (words)",
-        min_value=200,
+        min_value=150,
         max_value=800,
-        value=500,
-        step=50,
+        value=350,
+        step=25,
         disabled=auto_optimize,
     )
     overlap = st.sidebar.slider(
@@ -116,7 +122,7 @@ def render_sidebar() -> tuple[str, bool, int, float, int, int]:
     )
 
     if auto_optimize:
-        st.sidebar.caption("Auto mode enabled: the app will choose chunking and retrieval settings.")
+        st.sidebar.caption("Auto mode enabled: the app dynamically tunes chunking and retrieval sensitivity.")
 
     st.sidebar.markdown("---")
     st.sidebar.subheader("Instructions")
@@ -127,10 +133,10 @@ def render_sidebar() -> tuple[str, bool, int, float, int, int]:
 
     st.sidebar.markdown("---")
     st.sidebar.caption("Runs fully offline with local Ollama + open-source libraries.")
-    return ollama_model, auto_optimize, top_k, min_similarity, chunk_size, overlap
+    return ollama_model, embedding_model, auto_optimize, top_k, min_similarity, chunk_size, overlap
 
 
-def process_uploaded_pdfs(uploaded_files, auto_optimize: bool, chunk_size: int, overlap: int) -> None:
+def process_uploaded_pdfs(uploaded_files, auto_optimize: bool, chunk_size: int, overlap: int, embedding_model_name: str) -> None:
     payload = []
     total_bytes = 0
     for file in uploaded_files:
@@ -152,7 +158,7 @@ def process_uploaded_pdfs(uploaded_files, auto_optimize: bool, chunk_size: int, 
             vector_store_dir="vector_store",
             chunk_size=selected_chunk_size,
             overlap=selected_overlap,
-            embedding_model_name="all-MiniLM-L6-v2",
+            embedding_model_name=embedding_model_name,
             auto_optimize=auto_optimize,
         )
 
@@ -210,7 +216,7 @@ def main() -> None:
         "using retrieval-augmented generation (RAG)."
     )
 
-    ollama_model, auto_optimize, top_k, min_similarity, chunk_size, overlap = render_sidebar()
+    ollama_model, embedding_model, auto_optimize, top_k, min_similarity, chunk_size, overlap = render_sidebar()
 
     st.subheader("PDF Upload Area")
     uploaded_files = st.file_uploader("Upload one or more PDF files", type=["pdf"], accept_multiple_files=True)
@@ -225,7 +231,7 @@ def main() -> None:
 
             if st.button("Process PDFs", type="primary", use_container_width=True):
                 try:
-                    process_uploaded_pdfs(uploaded_files, auto_optimize, chunk_size, overlap)
+                    process_uploaded_pdfs(uploaded_files, auto_optimize, chunk_size, overlap, embedding_model)
                     st.success("PDFs processed successfully. You can now ask questions.")
                     st.info(
                         f"Active chunk settings -> Chunk Size: {st.session_state.active_chunk_size}, "
@@ -252,7 +258,7 @@ def main() -> None:
         st.subheader("Question Input Area")
         question = st.text_input("Enter your question")
         query_type = classify_query(question)
-        st.write(f"Query Type: {query_type}")
+        st.markdown(f'<div class="query-badge">Query Type: {query_type}</div>', unsafe_allow_html=True)
 
         ask_button = st.button("Generate Answer", use_container_width=True)
         if ask_button:
@@ -288,7 +294,7 @@ def main() -> None:
 
                     st.subheader("AI Answer Section")
                     st.markdown(
-                        f'<div class="premium-card"><p style="margin:0; font-size:1.05rem; line-height:1.6; color:#f1f5f9;">{result["answer"]}</p></div>',
+                        f'<div class="premium-card"><p class="answer-text">{result["answer"]}</p></div>',
                         unsafe_allow_html=True
                     )
 

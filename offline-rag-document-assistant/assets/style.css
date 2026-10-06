@@ -1,58 +1,239 @@
-/* Custom Premium CSS for Offline RAG Document Assistant */
+/* Clean, Professional White Theme for Offline RAG Document Assistant */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 /* Global Style Overrides */
 html, body, [data-testid="stAppViewContainer"] {
-    background-color: #0b0c10;
-    color: #e2e8f0;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-/* Sidebar Customization */
+[data-testid="stMain"] {
+    background-color: #ffffff !important;
+}
+
+[data-testid="stHeader"] {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Sidebar Styling */
 [data-testid="stSidebar"] {
-    background-color: #11131c !important;
-    border-right: 1px solid #1e2230;
+    background-color: #f8fafc !important;
+    border-right: 1px solid #e2e8f0 !important;
 }
 
-[data-testid="stSidebar"] .stMarkdown h1, 
-[data-testid="stSidebar"] .stMarkdown h2, 
-[data-testid="stSidebar"] .stMarkdown h3 {
-    color: #a5b4fc !important;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h2,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3 {
+    color: #0f172a !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
 }
 
-/* Headers and Titles */
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] span {
+    color: #334155 !important;
+}
+
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] .stWidgetLabel p {
+    color: #0f172a !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+}
+
+[data-testid="stSidebar"] .stSlider [data-testid="stMarkdownContainer"] p {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stSidebar"] .stSlider div {
+    color: #475569 !important;
+}
+
+/* Headings */
 h1 {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #3b82f6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    font-size: 2.1rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 0.4rem !important;
 }
 
 h2, h3, h4 {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    color: #cbd5e1 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    letter-spacing: -0.01em !important;
 }
 
-/* Custom Card Container */
+p, span, div {
+    color: #1e293b;
+}
+
+/* Input Widget Labels */
+label, 
+[data-testid="stWidgetLabel"] p, 
+[data-testid="stWidgetLabel"] span {
+    color: #0f172a !important;
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+}
+
+/* Text Inputs */
+.stTextInput input {
+    background-color: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    border-radius: 8px !important;
+    padding: 0.65rem 1rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 450 !important;
+    transition: all 0.2s ease !important;
+}
+
+.stTextInput input:focus {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+    background-color: #ffffff !important;
+}
+
+.stTextInput input::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* File Uploader */
+[data-testid="stFileUploader"] {
+    background-color: #f8fafc !important;
+    border: 2px dashed #cbd5e1 !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: #2563eb !important;
+    background-color: #f0f7ff !important;
+}
+
+[data-testid="stFileUploader"] section {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+}
+
+[data-testid="stFileUploader"] [data-testid="stMarkdownContainer"] p {
+    color: #334155 !important;
+    font-weight: 500 !important;
+}
+
+[data-testid="stFileUploader"] button {
+    background-color: #ffffff !important;
+    color: #2563eb !important;
+    border: 1.5px solid #bfdbfe !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-testid="stFileUploader"] button:hover {
+    background-color: #eff6ff !important;
+    border-color: #2563eb !important;
+    color: #1d4ed8 !important;
+}
+
+/* Buttons */
+div.stButton > button {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.65rem 1.6rem !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.22) !important;
+    transition: all 0.2s ease !important;
+}
+
+div.stButton > button:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32) !important;
+    transform: translateY(-1px) !important;
+}
+
+div.stButton > button:active {
+    transform: translateY(1px) !important;
+}
+
+/* Process Button (Primary) */
+div.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.22) !important;
+}
+
+div.stButton > button[kind="primary"]:hover {
+    background: linear-gradient(135deg, #047857 0%, #065f46 100%) !important;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.32) !important;
+}
+
+/* Alerts / Banners */
+[data-testid="stAlert"] {
+    border-radius: 10px !important;
+    border-width: 1px !important;
+    font-weight: 500 !important;
+}
+
+[data-testid="stAlert"] [data-testid="stMarkdownContainer"] p {
+    color: #0f172a !important;
+    font-weight: 500 !important;
+}
+
+/* Sliders */
+[data-testid="stSlider"] div[data-testid="stMarkdownContainer"] p {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+}
+
+/* Custom Query Badge */
+.query-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    margin: 0.3rem 0 0.8rem 0;
+}
+
+/* Premium Answer Card */
 .premium-card {
-    background: rgba(22, 25, 37, 0.7);
-    border: 1px solid rgba(99, 102, 241, 0.15);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #2563eb;
     border-radius: 12px;
     padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    margin: 1rem 0 1.5rem 0;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .premium-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.08);
+}
+
+.answer-text {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #0f172a !important;
+    font-weight: 450;
 }
 
 /* Metric Badges Grid */
@@ -60,18 +241,17 @@ h2, h3, h4 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1.2rem 0;
 }
 
 .metric-badge {
-    background: linear-gradient(145deg, #131520, #1b1f2e);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-left: 4px solid #6366f1;
-    border-radius: 8px;
-    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #2563eb;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
     text-align: left;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 .metric-badge.success-border {
@@ -83,107 +263,65 @@ h2, h3, h4 {
 }
 
 .metric-badge.info-border {
-    border-left-color: #3b82f6;
+    border-left-color: #2563eb;
 }
 
 .metric-label {
-    font-size: 0.8rem;
-    color: #94a3b8;
+    font-size: 0.75rem;
+    color: #64748b !important;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
 }
 
 .metric-value {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    color: #f1f5f9;
+    color: #0f172a !important;
     font-family: 'Outfit', sans-serif;
 }
 
-/* Streamlit Button Styling */
-div.stButton > button {
-    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%) !important;
-    color: #ffffff !important;
-    border: none !important;
-    border-radius: 8px !important;
-    padding: 0.6rem 1.5rem !important;
-    font-weight: 600 !important;
-    transition: all 0.2s ease-in-out !important;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
-}
-
-div.stButton > button:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45) !important;
-    background: linear-gradient(135deg, #5a52ff 0%, #4c94ff 100%) !important;
-}
-
-div.stButton > button:active {
-    transform: translateY(1px) !important;
-}
-
-/* Secondary Actions / Process Button Styling */
-div.stButton > button[kind="primary"] {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
-}
-
-div.stButton > button[kind="primary"]:hover {
-    background: linear-gradient(135deg, #12d393 0%, #06b07b 100%) !important;
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45) !important;
-}
-
-/* Input Fields styling */
-.stTextInput input {
-    background-color: #141722 !important;
-    border: 1px solid #282f44 !important;
-    color: #f8fafc !important;
-    border-radius: 8px !important;
-    padding: 0.5rem 1rem !important;
-}
-
-.stTextInput input:focus {
-    border-color: #6366f1 !important;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
-}
-
-/* Table Style Overrides */
-[data-testid="stTable"] {
-    background-color: #121520 !important;
-    border: 1px solid #1e2436 !important;
-    border-radius: 8px;
-}
-
-/* Custom source chunk block */
-.source-chunk-card {
-    background-color: #131722;
-    border: 1px solid #1f2538;
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-}
-
-.source-chunk-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: #6366f1;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    border-bottom: 1px solid #1e2436;
-    padding-bottom: 0.25rem;
-}
-
-.source-chunk-text {
-    font-size: 0.9rem;
-    color: #cbd5e1;
-    line-height: 1.5;
-}
-
-/* Expander custom appearance */
+/* Expanders */
 .stElementContainer [data-testid="stExpander"] {
-    background-color: #121624 !important;
-    border: 1px solid #1f273d !important;
-    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+    margin-bottom: 0.6rem !important;
+}
+
+[data-testid="stExpander"] summary {
+    color: #0f172a !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stExpander"] summary:hover {
+    color: #2563eb !important;
+}
+
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"] p {
+    color: #334155 !important;
+    line-height: 1.6 !important;
+}
+
+/* Captions and Subtext */
+.stCaption, 
+[data-testid="stMarkdownContainer"] small, 
+[data-testid="stMarkdownContainer"] .caption {
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+/* Dataframe & Tables */
+[data-testid="stDataFrame"] {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Dividers */
+hr {
+    border-color: #e2e8f0 !important;
+    margin: 1.5rem 0 !important;
 }

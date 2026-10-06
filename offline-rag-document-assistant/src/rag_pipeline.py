@@ -4,7 +4,7 @@ import os
 import time
 from typing import Dict, List
 
-from src.embeddings import generate_embeddings, generate_query_embedding, load_embedding_model
+from src.embeddings import generate_embeddings, generate_query_embedding, load_embedding_model, DEFAULT_EMBEDDING_MODEL
 from src.auto_tuner import recommend_chunk_settings_for_document
 from src.ollama_llm import generate_answer_with_ollama
 from src.pdf_reader import extract_text_by_page
@@ -17,11 +17,11 @@ def _tokenize_for_overlap(text: str) -> List[str]:
     cleaned = text.lower()
     for char in ",.;:!?()[]{}\"'\n\t":
         cleaned = cleaned.replace(char, " ")
-    return [token for token in cleaned.split() if len(token) > 2]
+    return [token for token in cleaned.split() if len(token) > 1]
 
 
 def _get_query_keywords(question: str) -> List[str]:
-    """Build keyword list with a few RAG-friendly intent synonyms."""
+    """Build keyword list with intent synonyms for accurate document and resume queries."""
     stop_words = {
         "what",
         "which",
@@ -38,13 +38,36 @@ def _get_query_keywords(question: str) -> List[str]:
         "pdf",
         "document",
         "main",
+        "is",
+        "are",
+        "my",
+        "your",
+        "his",
+        "her",
+        "our",
+        "their",
+        "give",
+        "tell",
+        "show",
+        "list",
+        "have",
+        "has",
+        "can",
+        "for",
+        "and",
     }
 
     tokens = [token for token in _tokenize_for_overlap(question) if token not in stop_words]
 
-    # Add a small synonym expansion for "purpose/goal"-style questions.
+    # Keyword expansions for resumes and technical documents
+    if any(word in tokens for word in ["skill", "skills"]):
+        tokens.extend(["skill", "skills", "technologies", "tools", "languages", "frameworks", "technical"])
+    if any(word in tokens for word in ["experience", "work"]):
+        tokens.extend(["experience", "employment", "intern", "role", "work", "projects"])
+    if any(word in tokens for word in ["education", "degree", "college"]):
+        tokens.extend(["education", "bachelor", "degree", "college", "university", "technology", "cgpa"])
     if any(word in tokens for word in ["purpose", "goal", "objective"]):
-        tokens.extend(["role", "objective", "responsibility", "job", "type", "intern"])
+        tokens.extend(["role", "objective", "responsibility", "job", "type", "summary"])
 
     return list(dict.fromkeys(tokens))
 
@@ -62,14 +85,14 @@ def _rerank_retrieved_chunks(question: str, retrieved: List[Dict[str, object]]) 
     reranked: List[Dict[str, object]] = []
 
     for item in retrieved:
-        chunk_text = str(item.get("chunk_text", ""))
+        chunk_text = str(item.get("chunk_text", "")).lower()
         chunk_tokens = set(_tokenize_for_overlap(chunk_text))
-        overlap_count = sum(1 for keyword in query_keywords if keyword in chunk_tokens)
+        overlap_count = sum(1 for keyword in query_keywords if keyword in chunk_tokens or any(keyword in token for token in chunk_tokens))
         lexical_score = overlap_count / max_overlap
 
         semantic_score = float(item.get("score", 0.0))
-        # Heuristic blend: semantic similarity remains primary signal.
-        combined_score = (0.80 * semantic_score) + (0.20 * lexical_score)
+        # Heuristic blend: semantic similarity primary (70%), lexical boost (30%)
+        combined_score = (0.70 * semantic_score) + (0.30 * lexical_score)
 
         new_item = dict(item)
         new_item["combined_score"] = combined_score
@@ -82,9 +105,9 @@ def _rerank_retrieved_chunks(question: str, retrieved: List[Dict[str, object]]) 
 def process_pdfs(
     uploaded_pdfs: List[Dict[str, object]],
     vector_store_dir: str = "vector_store",
-    chunk_size: int = 500,
+    chunk_size: int = 350,
     overlap: int = 50,
-    embedding_model_name: str = "all-MiniLM-L6-v2",
+    embedding_model_name: str = DEFAULT_EMBEDDING_MODEL,
     auto_optimize: bool = True,
 ) -> Dict[str, object]:
     """Build embeddings and a FAISS index from one or more uploaded PDFs."""
@@ -168,14 +191,14 @@ def answer_question(
     query_type: str,
     ollama_model_name: str = "llama3.2",
     top_k: int = 3,
-    min_similarity_for_answer: float = 0.45,
+    min_similarity_for_answer: float = 0.20,
 ) -> Dict[str, object]:
     """Retrieve relevant chunks and ask Ollama to generate an answer."""
     start_time = time.perf_counter()
 
     query_embedding = generate_query_embedding(embedding_model, question)
     # Retrieve a wider candidate pool first, then rerank and keep final top_k.
-    candidate_k = max(top_k, 4)
+    candidate_k = max(top_k, 5)
     retrieved_candidates = search_similar_chunks(
         index=index,
         query_embedding=query_embedding,
@@ -189,8 +212,8 @@ def answer_question(
     top_similarity = retrieved[0]["score"] if retrieved else 0.0
     average_similarity = sum(item["score"] for item in retrieved) / len(retrieved) if retrieved else 0.0
 
-    # Guardrail: avoid approximate or hallucinated answers when retrieval quality is weak.
-    if top_similarity < min_similarity_for_answer:
+    # Guardrail: only short-circuit if retrieval is completely disconnected from document (<0.15)
+    if top_similarity < max(0.15, min_similarity_for_answer):
         response_time = time.perf_counter() - start_time
         return {
             "answer": "I could not find this information in the uploaded document.",
@@ -211,11 +234,11 @@ def answer_question(
 
     response_time = time.perf_counter() - start_time
 
-    if top_similarity >= 0.65:
+    if top_similarity >= 0.50:
         confidence_level = "High Confidence"
-    elif top_similarity >= 0.45:
+    elif top_similarity >= 0.35:
         confidence_level = "Medium Confidence"
-    elif top_similarity >= 0.25:
+    elif top_similarity >= 0.20:
         confidence_level = "Low Confidence"
     else:
         confidence_level = "Answer not found in document"
