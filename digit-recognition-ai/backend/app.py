@@ -1,4 +1,15 @@
 from __future__ import annotations
+import sys
+import urllib.request
+import pandas as _pd  # Preload pandas C-extensions for Python 3.12 compatibility
+try:
+    import six
+    sys.modules["six.moves.urllib"] = urllib
+    sys.modules["six.moves.urllib.request"] = urllib.request
+    six.moves.urllib = urllib
+    six.moves.urllib.request = urllib.request
+except Exception:
+    pass
 
 import json
 from pathlib import Path
@@ -29,14 +40,21 @@ app = FastAPI(title="AI Handwritten Digit Recognition API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5174",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-if MODEL_DIR.exists():
-    app.mount("/artifacts", StaticFiles(directory=MODEL_DIR), name="artifacts")
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/artifacts", StaticFiles(directory=MODEL_DIR), name="artifacts")
 
 
 def load_history() -> Dict[str, Any]:

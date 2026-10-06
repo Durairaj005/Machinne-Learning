@@ -22,9 +22,9 @@ from tensorflow.keras.utils import to_categorical
 
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = BASE_DIR.parent
-WORKSPACE_ROOT = PROJECT_ROOT.parent
-DEFAULT_TRAIN_CSV = WORKSPACE_ROOT / "mnist_train.csv"
-DEFAULT_TEST_CSV = WORKSPACE_ROOT / "mnist_test.csv"
+DATASET_DIR = PROJECT_ROOT / "dataset"
+DEFAULT_TRAIN_CSV = DATASET_DIR / "mnist_train.csv"
+DEFAULT_TEST_CSV = DATASET_DIR / "mnist_test.csv"
 MODEL_DIR = BASE_DIR / "model"
 MODEL_PATH = MODEL_DIR / "digit_model.h5"
 HISTORY_PATH = MODEL_DIR / "history.json"
