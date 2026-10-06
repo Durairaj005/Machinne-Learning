@@ -177,6 +177,7 @@ Standard MNIST models expect a 28×28 image with a centered white digit on a bla
 
 ```text
 digit-recognition-ai/
+├── run.bat                 # One-click launcher for Windows (Backend + Frontend)
 ├── backend/
 │   ├── app.py                  # FastAPI server endpoints (predict, metrics, health)
 │   ├── predict.py              # Preprocessing pipeline and CNN model inference
@@ -209,6 +210,18 @@ digit-recognition-ai/
 │   └── vite.config.js
 └── README.md
 ```
+
+---
+
+## Quick Start (One-Click Launcher)
+
+For Windows users, launch both the FastAPI backend and Vite frontend with one command:
+`cmd
+run.bat
+`
+This starts:
+* **Backend API** at http://127.0.0.1:8000 (docs at /docs)
+* **React Web App** at http://localhost:5173
 
 ---
 

@@ -1,9 +1,6 @@
 # Digit Recognition AI ignores
 digit-recognition-ai/backend/.venv/
 digit-recognition-ai/backend/__pycache__/
-digit-recognition-ai/backend/model/*.h5
-digit-recognition-ai/backend/model/*.png
-digit-recognition-ai/backend/model/history.json
 digit-recognition-ai/frontend/node_modules/
 digit-recognition-ai/frontend/dist/
 digit-recognition-ai/frontend/.env

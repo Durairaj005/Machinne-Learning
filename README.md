@@ -21,5 +21,5 @@ A fully offline RAG (Retrieval-Augmented Generation) document intelligence chat 
 ## ⚡ Running the Projects
 
 Each project has its own folder containing a dedicated configuration, requirements list, and guides.
-* For the Digit Recognition AI: Navigate to `./digit-recognition-ai` and consult [`digit-recognition-ai/README.md`](./digit-recognition-ai/README.md).
+* For the Digit Recognition AI: Navigate to `./digit-recognition-ai` and run `run.bat` or follow [`digit-recognition-ai/README.md`](./digit-recognition-ai/README.md).
 * For the Document Assistant, you can use the launcher script [`run.bat`](./run.bat) at the workspace root.
