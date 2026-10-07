@@ -7,6 +7,8 @@ Recognizes any handwritten digit (**0 to 9**) from freehand canvas sketches as w
 ---
 #inner works
 <img width="1312" height="1199" alt="image" src="https://github.com/user-attachments/assets/906ca106-4c67-4926-86f9-f6c6202db25e" />
+<img width="1312" height="1199" alt="image" src="https://github.com/user-attachments/assets/3893a439-a464-4ffc-945a-91bc4a0b95e6" />
+
 
 
 ## Architecture & Workflow Diagram
